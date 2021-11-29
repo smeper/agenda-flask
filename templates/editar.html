@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<form action="/editar/{{contacto.0}}" method="POST" class="form-group m-3">
+    <input type="text" value="{{contacto.1}}" placeholder="Nombre" name="nombre" class="form-control m-3"> 
+    <input type="number" value="{{contacto.2}}" placeholder="Telefono" name="telefono" class="form-control m-3">
+    <input type="email" value="{{contacto.3}}" placeholder="Email" name="mail" class="form-control m-3">
+    <input type="submit" text="Modificar" name="guardar" class="btn btn-primary btn-block m-3">
+</form>
+
+{% endblock %}

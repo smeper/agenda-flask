@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<div class="row">
+    <div class="col">
+        <form action="/add" method="POST" class="form-group">
+            <input type="text" placeholder="Nombre" name="nombre" class="form-control m-2">
+            <input type="number" placeholder="Telefono" name="telefono" class="form-control m-2">
+            <input type="email" placeholder="Email" name="mail" class="form-control m-2">
+            <input type="submit" text="Guardar" name="guardar" class="btn btn-primary btn-block m-2">
+        </form>
+    </div>
+    <div class="col">
+        <table class="table-bordered">
+            <thead>
+                <tr>
+                    <td scope="col" class="p-2">Nombre</td>
+                    <td scope="col" class="p-2">Telefono</td>
+                    <td scope="col" class="p-2">Email</td>
+                    <td scope="col" class="p-2">Operaciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contacto in contactos %}
+                    <tr scope="row">
+                        <td class="p-2">{{ contacto.1 }}</td>
+                        <td class="p-2">{{ contacto.2 }}</td>
+                        <td class="p-2">{{ contacto.3 }}</td>
+                        <td class="p-2">
+                            <a href="/update/{{contacto.0}}" class="btn btn-secondary">Modificar</a>
+                            <a href="/delete/{{contacto.0}}" class="btn btn-danger btn-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
